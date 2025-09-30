@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import type { EntryProp } from "./Data/type";
 import { ThemeContext } from "./components/ThemeContext";
+import ProtectRoute from "./components/ProtextRoute";
 
 function MyApp() {
   const initialEntries: EntryProp[] = [];
@@ -29,10 +30,12 @@ function MyApp() {
   return (
     <>
       <Routes>
-        <Route path="/Login" element={<Login />} />
-        <Route
+        <Route path="/" element={<Login />} />
+        
+           <Route
           path="/home"
           element={
+            <ProtectRoute>
             <>
               <Header />
               <div className={`entries-container `}>
@@ -56,9 +59,13 @@ function MyApp() {
                   isOpen={isFormOpen}
                 />
               </footer>
+              
             </>
+            </ProtectRoute>
           }
         />
+       
+       
       </Routes>
     </>
   );

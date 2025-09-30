@@ -30,7 +30,9 @@ function Login() {
 
     setError("");
 
-    navigate('/home');
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("username", userName);
+    navigate('/home',{replace:true});
   }
   return (
     <>  

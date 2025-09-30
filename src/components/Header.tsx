@@ -9,7 +9,7 @@ function Header() {
         <>
             <div className='Heading'>
                 <div className='back-button'>
-                    <Link to={"/login"}>
+                    <Link to={"/"}>
                     <span className='back-button'>
                         <FontAwesomeIcon icon={faArrowLeft} />
                     </span>
