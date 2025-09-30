@@ -1,0 +1,356 @@
+html, body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light theme */
+body.light {
+  background-color: white;
+  color: #000;
+}
+
+/* Dark theme */
+body.dark {
+  background-color: #222;
+  color: #fff;
+}
+
+/* Links */
+a {
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+body.light a {
+  color: gray;
+}
+
+body.dark a {
+  color: white;
+}
+
+body.light a:hover {
+  color: #646cff;
+}
+
+body.dark a:hover {
+  color: #a0a0a0;
+}
+
+
+
+button, .theme-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light mode button */
+body.light button {
+  background-color: red;
+  color: #fff;
+}
+
+/* Dark mode button */
+body.dark button {
+  background-color: #333;
+  color: #fff;
+}
+
+.Heading {
+  display: flex;
+  background-color: red; /* Can change per theme if needed */
+  align-items: center;
+  justify-content: space-evenly;
+  
+  height: 55px;
+  transition: background-color 0.3s;
+}
+
+.Heading-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: white;
+  padding: 0 15px;
+}
+
+.Heading img {
+  width: 30px;
+  margin-right: 7px;
+}
+
+.Heading h1 {
+  font-weight: 500;
+  font-size: 1rem;
+
+}
+.error-message{
+   color: red;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.back-button{
+  justify-content: start;
+  align-items: center;
+  display: flex;
+  margin-left: 20px;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+  
+
+
+
+.instance {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  max-width: 900px;
+  gap: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light mode */
+body.light .instance {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Dark mode */
+body.dark .instance {
+  background-color: #222;
+  color: #fff;
+}
+
+.instance img {
+  height: auto;
+  width: 100%;
+  max-width: 200px;
+  border-radius: 15px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.instance-content {
+  flex: 1;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.instance-content-date {
+  font-weight: bold;
+}
+
+.instance-content-1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.details {
+  line-height: 1.5;
+  margin-top: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.instance-content-1 img {
+  height: 20px;
+  width: 20px;
+}
+
+
+.button{
+  text-align: end;
+  align-items: center;
+}
+
+
+
+      
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode login box */
+body.dark .login-box {
+  background-color: #333;
+  color: #fff;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark .login-box input {
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #777;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .Heading {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .Heading img {
+    margin-bottom: 5px;
+  }
+
+  .Heading h1 {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+/*Contact.tsx from now */
+
+/* .contact{
+  background-color: gray;
+}
+.contact-card{
+  background-color: white;
+  box-shadow: 10px;
+
+  margin: 20px;
+}
+
+.contact-content{
+  padding: 10px;
+}
+.contact-card img{
+  height: 200px;
+  width: 300px;
+}
+.info-group{
+  display: flex;
+}
+.info-group img{
+  width: 16px;
+  height: 16px;
+}
+.info-group span{
+  padding-left: 10px;
+}
+ */
+
+
+
+/* :root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
