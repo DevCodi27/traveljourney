@@ -7,14 +7,12 @@ interface ProtectedRouteProps{
 }
 
 const ProtectRoute: React.FC<ProtectedRouteProps>  = ({children})=>{
-     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+     const isLoggedIn = sessionStorage.getItem("username") === "Abishek";
+    
 
   if (!isLoggedIn) {
-    // Redirect to login if not authenticated
     return <Navigate to="/" replace />;
   }
-
-  // Render children if authenticated
   return <>{children}</>;
 }
 
