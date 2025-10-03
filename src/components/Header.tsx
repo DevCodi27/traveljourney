@@ -10,6 +10,7 @@
         const handleClick = () => {
             console.log("clicked")
     sessionStorage.removeItem("username");
+    sessionStorage.removeItem("userRole")
     navigate("/"); // Navigate programmatically
   };
         return (

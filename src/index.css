@@ -170,7 +170,7 @@ body.dark .instance {
   line-height: 1.5;
   margin-top: 5px;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  /* -webkit-line-clamp: 5; */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

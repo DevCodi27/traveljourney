@@ -3,6 +3,7 @@ import "../index.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import users from "../Data/User";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,24 +12,31 @@ function Login() {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  const user1 = "Abishek";
-  const user1password = "Abishek27";
+  const user = users;
+  // const user1password = "Abishek27";
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!userName.trim() || !password.trim) {
+     if (!userName.trim() || !password.trim()) {
       setError("User Name and Pasword is Required ");
       return;
     }
 
-    if (!(userName === user1) || !(password === user1password)) {
-      setError("Invalid Credentials");
-      return;
-    }
+   const matchuser =  user.find((user)=>(
+    userName === user.user && password === user.password
+   ));
 
-    setError("");
-    sessionStorage.setItem("username", userName);
-    navigate("/home", { replace: true });
+   if(matchuser)
+   {
+      sessionStorage.setItem("userName",matchuser.user)
+      sessionStorage.setItem("userRole", String(matchuser.role));
+      setError("");
+      navigate("/home", { replace: true });
+    
+   }
+   else{
+    setError("Invalid Credentials");
+   }
   };
   return (
     <>
@@ -76,7 +84,7 @@ function Login() {
             </div>
             <br />
             <br />
-            <button onClick={() => {}} type="submit">
+            <button  type="submit">
               Login
             </button>
           </form>

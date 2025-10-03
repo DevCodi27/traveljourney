@@ -2,7 +2,7 @@ import Header from "./components/Header";
 import Entry from "./components/Entry";
 import Form from "./components/Form";
 import { Suspense, useContext, useEffect, useState, type JSX } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import type { EntryProp } from "./Data/type";
 import { ThemeContext } from "./components/ThemeContext";
 import ProtectRoute from "./components/ProtextRoute";
@@ -16,6 +16,14 @@ function MyApp() {
   const [entries, setEntries] = useState<EntryProp[]>(initialEntries);
   // const [isFormOpen, setIsFormOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
+  const [role, setRole] = useState<number>(0);
+
+const location = useLocation();
+
+useEffect(() => {
+  const storedRole = Number(sessionStorage.getItem("userRole") ?? 0);
+  setRole(storedRole);
+}, [location]);
 
   const LoadingSpinner = () => (
     <div
@@ -59,8 +67,6 @@ function MyApp() {
 
 
 
-
-
   return (
     <>
       <ErrorBoundary fallback={<div>Oops! Something went wrong.</div>}>
@@ -84,7 +90,7 @@ function MyApp() {
                       <Entry entry={entry} />
                     ))}
                   </div>
-                  <FormController
+                  {role === 1 && <FormController
                     render={(openForm, closeForm, isOpen) => (
                       <>
                         <div className="add-button-container">
@@ -105,7 +111,8 @@ function MyApp() {
                         </footer>
                       </>
                     )}
-                  />
+                  />}
+                 
                 </>
               </ProtectRoute>
             }
