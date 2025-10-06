@@ -9,8 +9,9 @@ const Header = React.memo(() => {
   const navigate = useNavigate();
   const handleClick = () => {
     sessionStorage.removeItem("username");
-    sessionStorage.removeItem("userRole");
-    navigate("/");
+    sessionStorage.removeItem("role")
+    sessionStorage.removeItem("token");
+    navigate("/login");
   };
   return (
     <>

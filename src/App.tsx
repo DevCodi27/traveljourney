@@ -9,6 +9,7 @@ import React from "react";
 import ErrorBoundary from "./error/Error";
 import { useTheme } from "./CustomHooks/CustomTheme";
 import { Role } from "./CustomHooks/LocationHook";
+import Registration from "./components/Registration";
 
 function MyApp() {
   const initialEntries: EntryProp[] = [];
@@ -54,7 +55,13 @@ function MyApp() {
       <ErrorBoundary fallback={<div>Oops! Something went wrong.</div>}>
         <Routes>
           <Route
-            path="/"
+          path="/register"
+          element={
+            <Registration/>
+          }
+          />
+          <Route
+            path="/login"
             element={
               <Suspense fallback={<LoadingSpinner />}>
                 <Login />
@@ -73,7 +80,7 @@ function MyApp() {
                       <Entry entry={entry} />
                     ))}
                   </div>
-                  {role === 1 && (
+                  {role === "admin" && (
                     <FormController
                       render={(openForm, closeForm, isOpen) => (
                         <>
