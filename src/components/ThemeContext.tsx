@@ -1,27 +1,30 @@
-import { createContext,useState,type ReactNode } from "react";
+import { createContext, useMemo, useState, type ReactNode } from "react";
 
 type ThemeContextType = {
-    theme:"light"|"dark"; 
-    toggleTheme: ()=> void;
-}
+  theme: "light" | "dark";
+  toggleTheme: () => void;
+};
 
 export const ThemeContext = createContext<ThemeContextType>({
-    theme:"light",
-    toggleTheme:()=>{}
-})
+  theme: "light",
+  toggleTheme: () => {},
+});
 
-type Props = {children:ReactNode};
+type Props = { children: ReactNode };
 
-export const ThemeProvider = ({children}:Props)=>{
-    const [theme,setTheme] = useState<"light" | "dark">("light");
+export const ThemeProvider = ({ children }: Props) => {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
-    const toggleTheme=()=>{
-        setTheme(theme === "light"?"dark":"light");
-    };
+  const value = useMemo(
+    () => ({
+      theme,
+      toggleTheme: () =>
+        setTheme((prev) => (prev === "light" ? "dark" : "light")),
+    }),
+    [theme]
+  );
 
-    return (
-        <ThemeContext.Provider value={{theme,toggleTheme}}>
-            {children}
-        </ThemeContext.Provider>
-    );
+  return (
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  );
 };

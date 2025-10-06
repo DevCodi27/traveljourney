@@ -1,37 +1,35 @@
-    import Image from '../assets/icons8-global-50.png'
-    import { useNavigate } from 'react-router-dom';
-    import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-    import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-    import ThemeButton from "../components/ThemeButton";
+import Image from "../assets/icons8-global-50.png";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import ThemeButton from "../components/ThemeButton";
+import React from "react";
 
-    function Header() {
-
-        const navigate = useNavigate();
-        const handleClick = () => {
-            console.log("clicked")
+const Header = React.memo(() => {
+  const navigate = useNavigate();
+  const handleClick = () => {
     sessionStorage.removeItem("username");
-    sessionStorage.removeItem("userRole")
-    navigate("/"); // Navigate programmatically
+    sessionStorage.removeItem("userRole");
+    navigate("/");
   };
-        return (
-            <>
-                <div className='Heading'>
-                    <div className='back-button'>
+  return (
+    <>
+      <div className="Heading">
+        <div className="back-button">
+          <button onClick={handleClick} style={{ backgroundColor: "blue" }}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </button>
+        </div>
+        <div className="Heading-content">
+          <img src={Image} alt="" className="logo" />
+          <h1 className="title">My Travel Journey</h1>
+        </div>
+        <div className="theme-button">
+          <ThemeButton />
+        </div>
+      </div>
+    </>
+  );
+});
 
-                        <button onClick={handleClick} style={{backgroundColor:'blue'}}><FontAwesomeIcon icon={faArrowLeft} /></button>
-                       
-                    
-                    </div>
-                    <div className='Heading-content'>
-                        <img src={Image} alt="" className='logo' />
-                    <h1 className='title'>My Travel Journey</h1>
-                    </div>
-                    <div className='theme-button'>
-                        <ThemeButton/>
-                    </div>
-                </div>
-            </>
-        )
-    }
-
-    export default Header;
+export default Header;

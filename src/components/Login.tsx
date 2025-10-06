@@ -13,30 +13,26 @@ function Login() {
 
   const navigate = useNavigate();
   const user = users;
-  // const user1password = "Abishek27";
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-     if (!userName.trim() || !password.trim()) {
+    if (!userName.trim() || !password.trim()) {
       setError("User Name and Pasword is Required ");
       return;
     }
 
-   const matchuser =  user.find((user)=>(
-    userName === user.user && password === user.password
-   ));
+    const matchuser = user.find(
+      (user) => userName === user.user && password === user.password
+    );
 
-   if(matchuser)
-   {
-      sessionStorage.setItem("userName",matchuser.user)
+    if (matchuser) {
+      sessionStorage.setItem("userName", matchuser.user);
       sessionStorage.setItem("userRole", String(matchuser.role));
       setError("");
       navigate("/home", { replace: true });
-    
-   }
-   else{
-    setError("Invalid Credentials");
-   }
+    } else {
+      setError("Invalid Credentials");
+    }
   };
   return (
     <>
@@ -84,9 +80,7 @@ function Login() {
             </div>
             <br />
             <br />
-            <button  type="submit">
-              Login
-            </button>
+            <button type="submit">Login</button>
           </form>
         </div>
       </div>

@@ -184,24 +184,24 @@
   .popup-overlay {
     padding: 15px;
   }
-  
+
   .popup-content {
     max-height: 95vh;
   }
-  
+
   .form-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  
+
   .form-grid textarea {
     grid-column: span 1;
   }
-  
+
   .form-actions {
     flex-direction: column-reverse;
   }
-  
+
   .form-actions button {
     min-width: auto;
     width: 100%;
@@ -248,7 +248,7 @@
   /* font-weight: 600;   */
   /* transition: all  0.3s ease; */
   /* text-transform: uppercase; */
-  text-align: center  ;
+  text-align: center;
 }
 
 .add-entry-btn:hover {

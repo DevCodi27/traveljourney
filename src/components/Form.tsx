@@ -1,5 +1,5 @@
 import "./Form.css";
-import type { EntryProp } from '../Data/type';
+import type { EntryProp } from "../Data/type";
 type EntryType = EntryProp;
 
 type FormEntry = {

@@ -1,9 +1,10 @@
-import { useContext } from "react";
-import { ThemeContext } from "./ThemeContext";
+// import { useContext } from "react";
+// import { ThemeContext } from "./ThemeContext";
 import "./Toggle.css";
+import { useTheme } from "../CustomHooks/CustomTheme";
 
 function ThemeToggle() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <label className="switch">
