@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express"; // use import syntax
+import { verifyToken, AuthRequest } from "../middleware/auth";
 const router = express.Router();
 const mysql = require("mysql2/promise");
 const bcrypt = require("bcryptjs");
@@ -7,6 +8,12 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+router.get("/protected", verifyToken, (req: AuthRequest, res) => {
+  res.json({
+    message: "Access granted to protected route",
+    user: req.user,
+  });
+});
 // MySQL pool
 const db = mysql.createPool({
   host: process.env.DB_HOST,
@@ -40,7 +47,7 @@ interface UserRow {
 
 
 // REGISTER
-router.post("/register", async (req: express.Request<{}, {}, RegisterBody>, res: express.Response) => {
+router.post("/register", async (req, res) => {
   const { username, password, role = "user" } = req.body;
 
   if (!username || !password) {
@@ -70,7 +77,7 @@ router.post("/register", async (req: express.Request<{}, {}, RegisterBody>, res:
 });
 
 // LOGIN
-router.post("/login", async (req: express.Request<{}, {}, LoginBody>, res: express.Response) => {
+router.post("/login", async (req , res) => {
   const { username, password } = req.body;
 
   try {

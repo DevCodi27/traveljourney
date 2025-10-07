@@ -10,6 +10,7 @@ import ErrorBoundary from "./error/Error";
 import { useTheme } from "./CustomHooks/CustomTheme";
 import { Role } from "./CustomHooks/LocationHook";
 import Registration from "./components/Registration";
+import axios from "axios";
 
 function MyApp() {
   const initialEntries: EntryProp[] = [];
@@ -44,11 +45,40 @@ function MyApp() {
     startTransition(() => {
       setEntries((prev) => [...prev, { ...newEntry, id: prev.length + 1 }]);
     });
+      
   }
 
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
+useEffect(()=>{
+    const fetchEntries = async()=>{
+      try{
+        const response = await axios.get("http://localhost:5000/api/entries");
+        const formattedEntries = response.data.map((entry: any) => ({
+        id: entry.id,
+        image: {
+        src: entry.image_src,
+          alt: entry.image_alt
+        },
+        country: entry.country,
+        location: entry.location,
+        place: entry.place,
+        date: entry.date,
+        details: entry.details
+      }));
+        setEntries(formattedEntries);
+      }
+      catch(error:any)
+      {
+        console.error("Error loading entries:",error)
+      }
+    }
+
+    fetchEntries()
+      
+  },[]) 
+
 
   return (
     <>
@@ -77,7 +107,7 @@ function MyApp() {
                   <Header />
                   <div className={`entries-container `}>
                     {entries.map((entry) => (
-                      <Entry entry={entry} />
+                      <Entry key={entry.id} entry={entry} />
                     ))}
                   </div>
                   {role === "admin" && (

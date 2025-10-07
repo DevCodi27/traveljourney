@@ -1,4 +1,5 @@
 export type EntryProp = {
+  id?: number;
   image: {
     src: string;
     alt: string;

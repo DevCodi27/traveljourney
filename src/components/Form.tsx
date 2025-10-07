@@ -1,5 +1,6 @@
 import "./Form.css";
 import type { EntryProp } from "../Data/type";
+import axios from "axios";
 type EntryType = EntryProp;
 
 type FormEntry = {
@@ -9,7 +10,7 @@ type FormEntry = {
 };
 
 function Form({ onAddEntry, onClose, isOpen }: FormEntry) {
-  function onChange(event: React.FormEvent<HTMLFormElement>) {
+  async function onChange(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log("Form Submitted");
     const formData = new FormData(event.currentTarget);
@@ -24,9 +25,20 @@ function Form({ onAddEntry, onClose, isOpen }: FormEntry) {
       date: formData.get("date")?.toString() || "",
       details: formData.get("details")?.toString() || "",
     };
-    onAddEntry(entry);
-    event.currentTarget.reset();
-    onClose();
+    try{
+      const response = await axios.post("http://localhost:5000/api/entries",entry,{headers:{"Content-Type":"application/json"}}) 
+      console.log(response)
+     
+      onAddEntry(entry);
+      onClose();
+    }
+    catch(error:any)
+    {
+      console.error(error.response?.data||error.message)
+      alert("Failed to add entry. Please try again.");
+    }
+    
+    
   }
 
   const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {

@@ -2,6 +2,8 @@ import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 interface RegisterRequest {
   username: string;
@@ -15,6 +17,7 @@ function Registration() {
   const [password, setPassword] = useState<string>("");
   const [role, setRole] = useState<"user" | "admin">("user");
   const [error, setError] = useState<string>("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
@@ -65,12 +68,27 @@ function Registration() {
           />
 
           <label>Password</label>
-          <input
-            type="password"
+           <div className="password-wrapper">
+                  <input
+            type={showPassword?"text":"password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter password"
           />
+           <span
+                className="toggle-icon"
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+              >
+                {showPassword ? (
+                  <FontAwesomeIcon icon={faEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEyeSlash} />
+                )}
+              </span>
+           </div>
+      
 
           <label>Role</label>
           <select
