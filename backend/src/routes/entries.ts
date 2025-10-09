@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 const router = express.Router();
 const mysql = require("mysql2/promise");
 const dotenv = require("dotenv");
+const {verifyToken} = require("../middleware/auth")
 dotenv.config();
 const db = mysql.createPool({
   host: process.env.DB_HOST,
@@ -15,7 +16,7 @@ const db = mysql.createPool({
 
 
 
-router.post("/entries", async (req, res) => {
+router.post("/entries",verifyToken,async (req, res) => {
   try {
     const { image, country, location, place, date, details } = req.body;
 

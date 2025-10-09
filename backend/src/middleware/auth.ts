@@ -8,14 +8,14 @@ export interface AuthRequest extends Request{
     user?:{id:number;role:string};
 }
 
-export const verifyToken = (
+export const verifyToken = (  
      req: AuthRequest,
   res: Response,
   next: NextFunction
 ):void =>{
       try {
     const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1]; // Expect "Bearer <token>"
+    const token = authHeader && authHeader.split(" ")[1]; 
 
     if (!token) {
       res.status(401).json({ message: "Access denied. No token provided." });
@@ -28,7 +28,8 @@ export const verifyToken = (
     };
 
     req.user = decoded;
-    next();
+    
+    next(); 
   } catch (error) {
     res.status(403).json({ message: "Invalid or expired token" });
   }

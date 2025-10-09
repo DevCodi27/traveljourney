@@ -5,7 +5,7 @@ export const Role = () => {
   const [role, setRole] = useState<string>("user");
   const location = useLocation();
   useEffect(() => {
-    const storedRole = sessionStorage.getItem("role") ?? "user";
+    const storedRole = localStorage.getItem("role") ?? "user";
     setRole(storedRole);
   }, [location]);
 

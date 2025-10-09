@@ -12,7 +12,6 @@ type FormEntry = {
 function Form({ onAddEntry, onClose, isOpen }: FormEntry) {
   async function onChange(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log("Form Submitted");
     const formData = new FormData(event.currentTarget);
     const entry: EntryType = {
       image: {

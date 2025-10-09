@@ -10,6 +10,7 @@ import ErrorBoundary from "./error/Error";
 import { useTheme } from "./CustomHooks/CustomTheme";
 import { Role } from "./CustomHooks/LocationHook";
 import Registration from "./components/Registration";
+import { LoadingSpinner } from "./components/LoadingSpinner";
 import axios from "axios";
 
 function MyApp() {
@@ -19,14 +20,7 @@ function MyApp() {
   const [isPending, startTransition] = useTransition();
   const role = Role();
   const Login = React.lazy(() => import("./components/Login"));
-  const LoadingSpinner = () => (
-    <div
-      style={{ textAlign: "center", marginTop: "50px" }}
-      className="spinner-contiainer"
-    >
-      <div className="spinner" style={{ fontSize: "20px" }}></div>
-    </div>
-  );
+  
   type FormControllerProps = {
     render: (
       openForm: () => void,

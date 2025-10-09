@@ -41,9 +41,11 @@ function Login() {
 
          const data:LoginResponse = response.data
 
-        sessionStorage.setItem("token", data.token);
-        sessionStorage.setItem("username", data.username);
-        sessionStorage.setItem("role", data.role);
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.username);
+        localStorage.setItem("role", data.role);
+
+        axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
         setError("");
         navigate("/home", { replace: true });
     }
@@ -57,8 +59,8 @@ function Login() {
     }
 
     // if (matchuser) {
-    //   sessionStorage.setItem("userName", matchuser.user);
-    //   sessionStorage.setItem("userRole", String(matchuser.role));
+    //   localStorage.setItem("userName", matchuser.user);
+    //   localStorage.setItem("userRole", String(matchuser.role));
     //   setError("");
     //   navigate("/home", { replace: true });
     // } else {

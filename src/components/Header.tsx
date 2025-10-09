@@ -8,9 +8,9 @@ import React from "react";
 const Header = React.memo(() => {
   const navigate = useNavigate();
   const handleClick = () => {
-    sessionStorage.removeItem("username");
-    sessionStorage.removeItem("role")
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("role")
+    localStorage.removeItem("token");
     navigate("/login");
   };
   return (

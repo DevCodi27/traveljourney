@@ -8,12 +8,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-router.get("/protected", verifyToken, (req: AuthRequest, res) => {
-  res.json({
-    message: "Access granted to protected route",
-    user: req.user,
-  });
-});
+
 // MySQL pool
 const db = mysql.createPool({
   host: process.env.DB_HOST,
@@ -45,6 +40,12 @@ interface UserRow {
 }
 
 
+router.get("/protected", verifyToken, (req: AuthRequest, res) => {
+  res.json({
+    message: "Access granted to protected route",
+    user: req.user,
+  });
+});
 
 // REGISTER
 router.post("/register", async (req, res) => {
@@ -100,7 +101,7 @@ router.post("/login", async (req , res) => {
     const token = jwt.sign(
       { id: user.id, role: user.role },
       process.env.JWT_SECRET as string,
-      { expiresIn: "5m" }
+      { expiresIn: "1hr" }
     );
 
     res.json({ token, username: user.username, role: user.role });
