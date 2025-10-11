@@ -1,7 +1,7 @@
 import Header from "./components/Header";
 import Entry from "./components/Entry";
 import Form from "./components/Form";
-import { Suspense, useEffect, useState, useTransition, type JSX } from "react";
+import { Suspense,Profiler, useEffect, useState, useTransition, type JSX } from "react";
 import { Routes, Route } from "react-router-dom";
 import type { EntryProp } from "./Data/type";
 import ProtectRoute from "./components/ProtextRoute";
@@ -20,7 +20,7 @@ function MyApp() {
   const [isPending, startTransition] = useTransition();
   const role = Role();
   const Login = React.lazy(() => import("./components/Login"));
-  
+
   type FormControllerProps = {
     render: (
       openForm: () => void,
@@ -75,7 +75,9 @@ useEffect(()=>{
 
 
   return (
+    <Profiler id="App" onRender={onRenderCallback}>
     <>
+    
       <ErrorBoundary fallback={<div>Oops! Something went wrong.</div>}>
         <Routes>
           <Route
@@ -135,6 +137,7 @@ useEffect(()=>{
         </Routes>
       </ErrorBoundary>
     </>
+    </Profiler>
   );
 }
 
